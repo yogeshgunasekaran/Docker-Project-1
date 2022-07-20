@@ -1,0 +1,38 @@
+version: '3'
+services:
+  db01container:
+    image: yogeshgunasekaran/db01:V1
+    ports:
+      - "3306:3306"
+    volumes:
+      - project1dbdata:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=mypass
+
+  memcached01container:
+    image: memcached
+    ports:
+      - "11211:11211"
+
+  rabbitmq01container:
+    image: rabbitmq
+    ports:
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+
+  app01container:
+    image: yogeshgunasekaran/app01:V1
+    ports:
+      - "8080:8080"
+    volumes: 
+      - project1appdata:/usr/local/tomcat/webapps
+
+  web01container:
+    image: yogeshgunasekaran/web01:V1
+    ports:
+      - "80:80"
+volumes:
+  project1dbdata: {}
+  project1appdata: {}
