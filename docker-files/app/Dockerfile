@@ -12,7 +12,6 @@ LABEL "Author"="Yogesh"
 RUN rm -rf /usr/local/tomcat/webapps/*
 
 COPY --from=BUILD_IMAGE vprofile-repo/target/vprofile-v2.war /usr/local/tomcat/webapps/ROOT.war
-COPY application.properties /usr/local/tomcat8/webapps/ROOT/WEB-INF/classes/application.properties
 
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
